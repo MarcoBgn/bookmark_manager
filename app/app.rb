@@ -8,6 +8,8 @@ require_relative 'models/data_mapper_setup'
 # require 'dm-postgres-adapter'
 
 class Bookmark < Sinatra::Base
+
+  enable :sessions
   get '/' do
     @links = Link.all
     erb(:links)
@@ -15,6 +17,17 @@ class Bookmark < Sinatra::Base
 
   get '/links/new' do
     erb(:new_link)
+  end
+
+  post '/links/addtags' do
+    p params
+    p session['link'] = params['name']
+    redirect '/links/addtags'
+  end
+  
+  get '/links/addtags' do
+   p  @link = session['link']
+    erb(:add_tags)
   end
 
   post '/links' do
@@ -31,15 +44,6 @@ class Bookmark < Sinatra::Base
      erb(:links)
   end
 
-  #get '/tags' do
-    #erb(:tags)
-  #end
-
- #post '/tags'do
-
-
-    #Link.get()
- #end
 
  #start the server if ruby file executed directly
   run! if app_file == $0

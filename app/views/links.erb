@@ -1,5 +1,6 @@
 <h1> Links </h1>
 <a href="/links/new">Add Bookmark</a><br>
+<a href="/links/addtags">Add Tags</a>
 <br>
 <ul id='links'>
   <% @links.each do |link| %>
@@ -8,7 +9,10 @@
     URL: <%= link.url %>
     Tags: <% link.tags.each do |x| %>
               <%=x.tag%>
-          <% end %>
+            <% end %>
+    <form action='/links/addtags' method='post'>
+      <input id="<%=link.title%>"  type='submit' value="Add Tag" name="<%=link.title%>">
+            </form>
   </li>
   <% end %>
 </ul>

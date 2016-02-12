@@ -20,12 +20,3 @@ describe 'adding tags' do
   end
 end
 
-describe 'visits /tags/bubbles' do
-  it 'checks that only Links tagged with bubbles are present' do
-    visit_and_add_tag_bubbles
-    visit_and_add_tag
-    visit('/tags/bubbles') 
-    expect(page).to have_content('soap.com')
-    expect(page).to_not have_content('bbc.news.co.uk')
-  end
-end
