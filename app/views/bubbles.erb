@@ -5,12 +5,8 @@
 <ul id='links'>
   <% @links.each do |link| %>
   <li>
-    <% link.tags.each do |x| %>
-    <% if x.tag == 'bubbles'%>
       Title: <%= link.title %>
       URL: <%= link.url %>
-      Tags: <%= x.tag %>
-  <% end %> 
           <% end %>
   </li>
   <% end %>

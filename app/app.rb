@@ -19,15 +19,16 @@ class Bookmark < Sinatra::Base
 
   post '/links' do
     link = Link.create(title: params[:title], url: params[:url])
-    tag = Tag.create(tag: params[:tag])
+    tag = Tag.first_or_create(tag: params[:tag])
     link.tags << tag
     link.save
     redirect '/'
   end
 
-  get '/tags/bubbles' do
-   @links = Link.all 
-    erb(:bubbles)
+  get '/tags/:tag' do
+     tag_1 = Tag.first(tag: params['tag'])
+     @links = tag_1 ? tag_1.links : []
+     erb(:links)
   end
 
   #get '/tags' do
