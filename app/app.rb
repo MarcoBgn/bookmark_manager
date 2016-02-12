@@ -16,7 +16,7 @@ class Bookmark < Sinatra::Base
   end
 
   post '/links' do
-    link = Link.create(title: params[:title], url: params[:url])
+    link = Link.first_or_create(title: params[:title], url: params[:url])
     tag = Tag.first_or_create(tag: params[:tag])
     link.tags << tag
     link.save
@@ -35,7 +35,7 @@ class Bookmark < Sinatra::Base
   end
 
   get '/links/addtags' do
-   p  @link = session['link']
+    p @link = Link.first(title: session['link'])
     erb(:add_tags)
   end
 

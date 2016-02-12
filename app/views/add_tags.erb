@@ -1,1 +1,6 @@
-<p> This is the name of the link <%= @link %> </p>
+   <form action='/links' method='post'>
+      <input type='hidden' name='title' value=<%=@link.title%>>
+      <input type='hidden' name='url' value=<%=@link.url%>>
+        Tag: <input name='tag'>
+        <input   type='submit' value="Add Tag">
+   </form>

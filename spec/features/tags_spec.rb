@@ -12,6 +12,9 @@ feature 'Tags' do
     visit_and_add_tag
     click_button('BBC News')
     expect(page.status_code).to eq 200
-    
+    fill_in('tag', with: 'british') 
+    click_button('Add Tag')
+    expect(page).to have_content "Tags: news, british"
   end
+
 end
