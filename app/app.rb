@@ -15,27 +15,28 @@ class Bookmark < Sinatra::Base
     erb(:links)
   end
 
-  get '/links/new' do
-    erb(:new_link)
-  end
-
-  post '/links/addtags' do
-    p params
-    p session['link'] = params['name']
-    redirect '/links/addtags'
-  end
-  
-  get '/links/addtags' do
-   p  @link = session['link']
-    erb(:add_tags)
-  end
-
   post '/links' do
     link = Link.create(title: params[:title], url: params[:url])
     tag = Tag.first_or_create(tag: params[:tag])
     link.tags << tag
     link.save
     redirect '/'
+  end
+
+
+  get '/links/new' do
+    erb(:new_link)
+  end
+
+  post '/links/addtags' do
+    p params
+    p session['link'] = params['link_name']
+    redirect '/links/addtags'
+  end
+
+  get '/links/addtags' do
+   p  @link = session['link']
+    erb(:add_tags)
   end
 
   get '/tags/:tag' do

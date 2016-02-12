@@ -11,7 +11,8 @@
               <%=x.tag%>
             <% end %>
     <form action='/links/addtags' method='post'>
-      <input id="<%=link.title%>"  type='submit' value="Add Tag" name="<%=link.title%>">
+      <input type='hidden' name='link_name' value="<%=link.title%>">
+      <input id="<%=link.title%>"  type='submit' value="Add Tag">
             </form>
   </li>
   <% end %>
